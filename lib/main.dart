@@ -1,6 +1,7 @@
 import 'package:bloc_rest_api_clean_arch/bloc/counter/counter_bloc.dart';
 import 'package:bloc_rest_api_clean_arch/bloc/image_picker/image_picker_bloc.dart';
-import 'package:bloc_rest_api_clean_arch/screens/image_picker_screen/image_picker_screen.dart';
+import 'package:bloc_rest_api_clean_arch/bloc/todo/todo_bloc.dart';
+import 'package:bloc_rest_api_clean_arch/screens/todo_screen/todo_screen.dart';
 import 'package:bloc_rest_api_clean_arch/utils/image_picker_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,6 +25,9 @@ class MyApp extends StatelessWidget {
             ImagePickerUtils(),
           ),
         ),
+        BlocProvider(
+          create: (_) => TodoBloc(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -34,7 +38,7 @@ class MyApp extends StatelessWidget {
           ),
           useMaterial3: true,
         ),
-        home: const ImagePickerScreen(),
+        home: const TodoScreen(),
       ),
     );
   }
