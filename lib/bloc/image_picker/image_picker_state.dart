@@ -2,18 +2,27 @@ import 'package:equatable/equatable.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ImagePickerState extends Equatable {
-  final XFile? file;
+  final XFile? capturedImageFile;
+  final XFile? galleryImageFile;
 
   const ImagePickerState({
-    this.file,
+    this.capturedImageFile,
+    this.galleryImageFile,
   });
 
-  ImagePickerState copyWith({XFile? file}) {
+  ImagePickerState copyWith({
+    XFile? capturedImageFile,
+    XFile? galleryImageFile,
+  }) {
     return ImagePickerState(
-      file: file ?? this.file,
+      capturedImageFile: capturedImageFile ?? this.capturedImageFile,
+      galleryImageFile: galleryImageFile ?? this.galleryImageFile,
     );
   }
 
   @override
-  List<Object?> get props => [file];
+  List<Object?> get props => [
+        capturedImageFile,
+        galleryImageFile,
+      ];
 }

@@ -15,20 +15,20 @@ class ImagePickerBloc extends Bloc<ImagePickerEvent, ImagePickerState> {
 
   Future<void> _cameraCapture(
       CameraCapture event, Emitter<ImagePickerState> emit) async {
-    XFile? file = await imagePickerUtils.cameraCapture();
+    XFile? capturedImageFile = await imagePickerUtils.cameraCapture();
     emit(
       state.copyWith(
-        file: file,
+        capturedImageFile: capturedImageFile,
       ),
     );
   }
 
   Future<void> _galleryImagePicker(
       GalleryImagePicker event, Emitter<ImagePickerState> emit) async {
-    XFile? file = await imagePickerUtils.pickImageFromGallery();
+    XFile? galleryImageFile = await imagePickerUtils.pickImageFromGallery();
     emit(
       state.copyWith(
-        file: file,
+        galleryImageFile: galleryImageFile,
       ),
     );
   }

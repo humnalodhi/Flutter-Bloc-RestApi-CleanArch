@@ -4,10 +4,10 @@ class ImagePickerUtils {
   final ImagePicker imagePicker = ImagePicker();
 
   Future<XFile?> cameraCapture() async {
-    final XFile? file = await imagePicker.pickImage(
+    final XFile? capturedImageFile = await imagePicker.pickImage(
       source: ImageSource.camera,
     );
-    return file;
+    return capturedImageFile;
   }
 
   Future<XFile?> pickImageFromGallery() async {
