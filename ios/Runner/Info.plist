@@ -6,6 +6,10 @@
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
 	<string>Bloc Rest Api Clean Arch</string>
+	<key>NSCameraUsageDescription</key>
+    <string>Explanation on why camera access is needed.</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Explanation on why microphone access is needed.</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
