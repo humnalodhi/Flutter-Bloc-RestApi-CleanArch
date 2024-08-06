@@ -5,7 +5,9 @@ import 'package:bloc_rest_api_clean_arch/bloc/posts/posts_bloc.dart';
 import 'package:bloc_rest_api_clean_arch/bloc/todo/todo_bloc.dart';
 import 'package:bloc_rest_api_clean_arch/repository/favorite_repository.dart';
 import 'package:bloc_rest_api_clean_arch/repository/posts_repository.dart';
+import 'package:bloc_rest_api_clean_arch/screens/counter_screen/counter_screen.dart';
 import 'package:bloc_rest_api_clean_arch/screens/favorite_app_screen/favorite_app_screen.dart';
+import 'package:bloc_rest_api_clean_arch/screens/login_screen/login_screen.dart';
 import 'package:bloc_rest_api_clean_arch/screens/posts_screen/posts_screen.dart';
 import 'package:bloc_rest_api_clean_arch/utils/image_picker_utils.dart';
 import 'package:flutter/material.dart';
@@ -22,9 +24,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (_) => CounterBloc(),
-        ),
         BlocProvider(
           create: (_) => ImagePickerBloc(
             ImagePickerUtils(),
@@ -55,7 +54,7 @@ class MyApp extends StatelessWidget {
           ),
           useMaterial3: true,
         ),
-        home: const PostsScreen(),
+        home: const LoginScreen(),
       ),
     );
   }
