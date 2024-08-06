@@ -40,19 +40,49 @@ class _PostsScreenState extends State<PostsScreen> {
                 ),
               );
             case PostsStatus.success:
-              return ListView.builder(
-                itemCount: state.postsList.length,
-                itemBuilder: (context, index) {
-                  final item = state.postsList[index];
-                  return ListTile(
-                    title: Text(
-                      item.email.toString(),
+              return Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Column(
+                  children: [
+                    TextFormField(
+                      decoration: const InputDecoration(
+                        hintText: 'Search with email',
+                        border: OutlineInputBorder(),
+                      ),
+                      onChanged: (filterKey) {
+                        context.read<PostsBloc>().add(
+                              SearchItem(filterKey),
+                            );
+                      },
                     ),
-                    subtitle: Text(
-                      item.body.toString(),
+                    Expanded(
+                      child: state.searchMessage.isNotEmpty
+                          ? Center(
+                              child: Text(
+                                state.searchMessage.toString(),
+                              ),
+                            )
+                          : ListView.builder(
+                              itemCount: state.tempPostList.isEmpty
+                                  ? state.postsList.length
+                                  : state.tempPostList.length,
+                              itemBuilder: (context, index) {
+                                final item = state.tempPostList.isEmpty
+                                    ? state.postsList[index]
+                                    : state.tempPostList[index];
+                                return ListTile(
+                                  title: Text(
+                                    item.email.toString(),
+                                  ),
+                                  subtitle: Text(
+                                    item.body.toString(),
+                                  ),
+                                );
+                              },
+                            ),
                     ),
-                  );
-                },
+                  ],
+                ),
               );
           }
         },
