@@ -1,9 +1,12 @@
 import 'package:bloc_rest_api_clean_arch/bloc/counter/counter_bloc.dart';
 import 'package:bloc_rest_api_clean_arch/bloc/favorite_app/favorite_app_bloc.dart';
 import 'package:bloc_rest_api_clean_arch/bloc/image_picker/image_picker_bloc.dart';
+import 'package:bloc_rest_api_clean_arch/bloc/posts/posts_bloc.dart';
 import 'package:bloc_rest_api_clean_arch/bloc/todo/todo_bloc.dart';
 import 'package:bloc_rest_api_clean_arch/repository/favorite_repository.dart';
+import 'package:bloc_rest_api_clean_arch/repository/posts_repository.dart';
 import 'package:bloc_rest_api_clean_arch/screens/favorite_app_screen/favorite_app_screen.dart';
+import 'package:bloc_rest_api_clean_arch/screens/posts_screen/posts_screen.dart';
 import 'package:bloc_rest_api_clean_arch/utils/image_picker_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,6 +38,11 @@ class MyApp extends StatelessWidget {
             FavoriteRepository(),
           ),
         ),
+        BlocProvider(
+          create: (_) => PostsBloc(
+            PostsRepository(),
+          ),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -47,7 +55,7 @@ class MyApp extends StatelessWidget {
           ),
           useMaterial3: true,
         ),
-        home: const FavoriteAppScreen(),
+        home: const PostsScreen(),
       ),
     );
   }
