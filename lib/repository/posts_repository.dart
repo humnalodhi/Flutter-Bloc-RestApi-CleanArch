@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:bloc_rest_api_clean_arch/model/posts_model.dart';
 import 'package:http/http.dart' as http;
 
