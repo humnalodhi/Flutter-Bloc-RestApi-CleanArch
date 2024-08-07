@@ -3,15 +3,19 @@ import 'package:bloc_rest_api_clean_arch/bloc/favorite_app/favorite_app_bloc.dar
 import 'package:bloc_rest_api_clean_arch/bloc/image_picker/image_picker_bloc.dart';
 import 'package:bloc_rest_api_clean_arch/bloc/posts/posts_bloc.dart';
 import 'package:bloc_rest_api_clean_arch/bloc/todo/todo_bloc.dart';
+import 'package:bloc_rest_api_clean_arch/config/routes/routes_names.dart';
 import 'package:bloc_rest_api_clean_arch/repository/favorite_repository.dart';
 import 'package:bloc_rest_api_clean_arch/repository/posts_repository.dart';
 import 'package:bloc_rest_api_clean_arch/screens/counter_screen/counter_screen.dart';
 import 'package:bloc_rest_api_clean_arch/screens/favorite_app_screen/favorite_app_screen.dart';
 import 'package:bloc_rest_api_clean_arch/screens/login_screen/login_screen.dart';
 import 'package:bloc_rest_api_clean_arch/screens/posts_screen/posts_screen.dart';
+import 'package:bloc_rest_api_clean_arch/screens/splash_screen/splash_screen.dart';
 import 'package:bloc_rest_api_clean_arch/utils/image_picker_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'config/routes/routes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -54,7 +58,8 @@ class MyApp extends StatelessWidget {
           ),
           useMaterial3: true,
         ),
-        home: const LoginScreen(),
+        initialRoute: RoutesNames.splashScreen,
+        onGenerateRoute: Routes.generateRoute,
       ),
     );
   }
