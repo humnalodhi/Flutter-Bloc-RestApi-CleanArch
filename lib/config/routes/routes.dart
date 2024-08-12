@@ -1,4 +1,5 @@
 import 'package:bloc_rest_api_clean_arch/config/routes/routes_names.dart';
+import 'package:bloc_rest_api_clean_arch/screens/home_screen/home_screen.dart';
 import 'package:bloc_rest_api_clean_arch/screens/login_screen/login_screen.dart';
 import 'package:bloc_rest_api_clean_arch/screens/posts_screen/posts_screen.dart';
 import 'package:bloc_rest_api_clean_arch/screens/splash_screen/splash_screen.dart';
@@ -18,6 +19,10 @@ class Routes {
       case RoutesNames.postsScreen:
         return MaterialPageRoute(
           builder: (context) => const PostsScreen(),
+        );
+      case RoutesNames.homeScreen:
+        return MaterialPageRoute(
+          builder: (context) => const HomeScreen(),
         );
       default:
         return MaterialPageRoute(
