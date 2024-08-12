@@ -29,4 +29,8 @@ class PasswordChanged extends LoginEvent {
   List<Object> get props => [password];
 }
 
-class LoginAPI extends LoginEvent{}
+class LoginAPI extends LoginEvent {}
+
+class EmailUnFocused extends LoginEvent {}
+
+class PasswordUnFocused extends LoginEvent {}

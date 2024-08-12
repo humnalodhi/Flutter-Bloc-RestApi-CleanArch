@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
           ),
           useMaterial3: true,
         ),
-        initialRoute: RoutesNames.homeScreen,
+        initialRoute: RoutesNames.loginScreen,
         onGenerateRoute: Routes.generateRoute,
       ),
     );

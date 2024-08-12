@@ -1,12 +1,16 @@
 import 'dart:convert';
 import 'package:bloc/bloc.dart';
+import 'package:bloc_rest_api_clean_arch/repository/auth/login_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:http/http.dart' as http;
 
 part 'login_event.dart';
+
 part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
+  LoginRepository loginRepository = LoginRepository();
+
   LoginBloc() : super(const LoginState()) {
     on<EmailChanged>(onEmailChanged);
     on<PasswordChanged>(onPasswordChanged);
@@ -34,34 +38,38 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       'email': state.email,
       'password': state.password,
     };
-    try {
-      final response = await http.post(
-        Uri.parse('https://reqres.in/api/login'),
-        body: data,
-      );
-      var data1 = jsonDecode(response.body);
-      if (response.statusCode == 200) {
+    emit(
+      state.copyWith(
+        loginStatus: LoginStatus.loading,
+      ),
+    );
+    await loginRepository.loginAPI(data).then(
+      (value) {
+        if (value.error.isNotEmpty) {
+          emit(
+            state.copyWith(
+              message: value.error.toString(),
+              loginStatus: LoginStatus.success,
+            ),
+          );
+        } else {
+          emit(
+            state.copyWith(
+              message: 'Login Successfully',
+              loginStatus: LoginStatus.error,
+            ),
+          );
+        }
+      },
+    ).onError(
+      (error, stackTrace) {
         emit(
           state.copyWith(
-            loginStatus: LoginStatus.success,
-            message: 'Login Successful',
-          ),
-        );
-      } else {
-        emit(
-          state.copyWith(
+            message: error.toString(),
             loginStatus: LoginStatus.error,
-            message: data1['error'],
           ),
         );
-      }
-    } catch (e) {
-      emit(
-        state.copyWith(
-          loginStatus: LoginStatus.error,
-          message: e.toString(),
-        ),
-      );
-    }
+      },
+    );
   }
 }
