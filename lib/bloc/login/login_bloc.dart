@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:bloc/bloc.dart';
 import 'package:bloc_rest_api_clean_arch/repository/auth/login_repository.dart';
+import 'package:bloc_rest_api_clean_arch/services/session_manager/session_controller.dart';
 import 'package:equatable/equatable.dart';
 import 'package:http/http.dart' as http;
 
@@ -46,7 +47,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       ),
     );
     await loginRepository.loginAPI(data).then(
-      (value) {
+      (value) async {
         if (value.error.isNotEmpty) {
           emit(
             state.copyWith(
@@ -55,6 +56,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
             ),
           );
         } else {
+          await SessionController().saveUserInPreference(value);
+          await SessionController().getUserFromPreference();
           emit(
             state.copyWith(
               message: 'Login Successfully',

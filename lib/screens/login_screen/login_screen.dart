@@ -1,4 +1,5 @@
 import 'package:bloc_rest_api_clean_arch/bloc/login/login_bloc.dart';
+import 'package:bloc_rest_api_clean_arch/config/routes/routes_names.dart';
 import 'package:bloc_rest_api_clean_arch/main.dart';
 import 'package:bloc_rest_api_clean_arch/utils/flush_bar_helper.dart';
 import 'package:flutter/material.dart';
@@ -125,10 +126,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     }
 
                     if (state.loginStatus == LoginStatus.success) {
-                      FlushBarHelper.flushBarSuccessMessage(
-                        'Login Successfully',
+                      Navigator.pushNamed(
                         context,
+                        RoutesNames.homeScreen,
                       );
+                      // FlushBarHelper.flushBarSuccessMessage(
+                      //   'Login Successfully',
+                      //   context,
+                      // );
                     }
                   },
                   child: BlocBuilder<LoginBloc, LoginState>(

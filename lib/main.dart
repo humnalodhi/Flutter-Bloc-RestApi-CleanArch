@@ -57,7 +57,7 @@ class MyApp extends StatelessWidget {
           ),
           useMaterial3: true,
         ),
-        initialRoute: RoutesNames.loginScreen,
+        initialRoute: RoutesNames.splashScreen,
         onGenerateRoute: Routes.generateRoute,
       ) ,
     );

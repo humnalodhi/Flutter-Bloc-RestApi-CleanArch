@@ -1,4 +1,6 @@
+import 'package:bloc_rest_api_clean_arch/config/routes/routes_names.dart';
 import 'package:bloc_rest_api_clean_arch/model/person_model.dart';
+import 'package:bloc_rest_api_clean_arch/services/storage/local_storage.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -44,6 +46,33 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Home'),
+        actions: [
+          InkWell(
+            onTap: () {
+              LocalStorage localStorage = LocalStorage();
+              localStorage.clearValue('token').then(
+                (value) {
+                  localStorage.clearValue('isLogin').then(
+                    (value) {
+                      Navigator.pushNamed(
+                        context,
+                        RoutesNames.loginScreen,
+                      );
+                    },
+                  );
+                },
+              );
+            },
+            child: const Icon(
+              Icons.logout,
+              size: 20,
+              color: Colors.black,
+            ),
+          )
+        ],
+      ),
       body: ListView.builder(
         itemCount: personList.length,
         itemBuilder: (context, index) {
@@ -77,4 +106,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-
