@@ -3,5 +3,6 @@ class RoutesNames{
   static const String loginScreen = 'loginScreen';
   static const String postsScreen = 'postsScreen';
   static const String homeScreen = 'homeScreen';
+  static const String moviesScreen = 'moviesScreen';
 
 }

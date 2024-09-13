@@ -1,6 +1,7 @@
 import 'package:bloc_rest_api_clean_arch/config/routes/routes_names.dart';
 import 'package:bloc_rest_api_clean_arch/screens/home_screen/home_screen.dart';
 import 'package:bloc_rest_api_clean_arch/screens/login_screen/login_screen.dart';
+import 'package:bloc_rest_api_clean_arch/screens/movies_screen/movies_screen.dart';
 import 'package:bloc_rest_api_clean_arch/screens/posts_screen/posts_screen.dart';
 import 'package:bloc_rest_api_clean_arch/screens/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,10 @@ class Routes {
       case RoutesNames.homeScreen:
         return MaterialPageRoute(
           builder: (context) => const HomeScreen(),
+        );
+      case RoutesNames.moviesScreen:
+        return MaterialPageRoute(
+          builder: (context) => const MoviesScreen(),
         );
       default:
         return MaterialPageRoute(
